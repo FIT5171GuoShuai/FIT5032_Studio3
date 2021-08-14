@@ -1,0 +1,96 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="User.Store" Alias="Self" Provider="System.Data.SqlClient" ProviderManifestToken="2012" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+  <EntityContainer Name="UserStoreContainer">
+    <EntitySet Name="UserSet" EntityType="User.Store.UserSet" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="AdminSet" EntityType="User.Store.AdminSet" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="OrderSet" EntityType="User.Store.OrderSet" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="HeritageSet" EntityType="User.Store.HeritageSet" store:Type="Tables" Schema="dbo" />
+    <AssociationSet Name="UserOrder" Association="User.Store.UserOrder">
+      <End Role="User" EntitySet="UserSet" />
+      <End Role="Order" EntitySet="OrderSet" />
+    </AssociationSet>
+    <AssociationSet Name="HeritageOrder" Association="User.Store.HeritageOrder">
+      <End Role="Heritage" EntitySet="HeritageSet" />
+      <End Role="Order" EntitySet="OrderSet" />
+    </AssociationSet>
+    <AssociationSet Name="AdminOrder" Association="User.Store.AdminOrder">
+      <End Role="Admin" EntitySet="AdminSet" />
+      <End Role="Order" EntitySet="OrderSet" />
+    </AssociationSet>
+  </EntityContainer>
+  <EntityType Name="UserSet">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Email" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="name" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="password" Type="nvarchar(max)" Nullable="false" />
+  </EntityType>
+  <EntityType Name="AdminSet">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="password" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="aname" Type="nvarchar(max)" Nullable="false" />
+  </EntityType>
+  <EntityType Name="OrderSet">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="user_id" Type="int" Nullable="false" />
+    <Property Name="heritage_id" Type="int" Nullable="false" />
+    <Property Name="create_time" Type="datetime" Nullable="false" />
+    <Property Name="detail" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="UserId" Type="int" Nullable="false" />
+    <Property Name="HeritageId" Type="int" Nullable="false" />
+    <Property Name="AdminId" Type="int" Nullable="false" />
+  </EntityType>
+  <EntityType Name="HeritageSet">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="hname" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="address" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="pic" Type="nvarchar(max)" Nullable="false" />
+  </EntityType>
+  <Association Name="UserOrder">
+    <End Role="User" Type="User.Store.UserSet" Multiplicity="1" />
+    <End Role="Order" Type="User.Store.OrderSet" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="User">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="Order">
+        <PropertyRef Name="UserId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="HeritageOrder">
+    <End Role="Heritage" Type="User.Store.HeritageSet" Multiplicity="1" />
+    <End Role="Order" Type="User.Store.OrderSet" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Heritage">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="Order">
+        <PropertyRef Name="HeritageId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="AdminOrder">
+    <End Role="Admin" Type="User.Store.AdminSet" Multiplicity="1" />
+    <End Role="Order" Type="User.Store.OrderSet" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Admin">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="Order">
+        <PropertyRef Name="AdminId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+</Schema>

@@ -1,0 +1,35 @@
+﻿@{
+    ViewBag.Title = "Home Page";
+}
+<body>
+    <form action="/Home/Login" method="post">
+
+        <div class="container wrap1" style="height:450px;">
+            <h2 class="mg-b20 text-center">Hello</h2>
+            <div class="col-sm-8 col-md-5 center-auto pd-sm-50 pd-xs-20 main_content">
+                <p class="text-center font16">Login in </p>
+                <form>
+                    <div class="form-group mg-t20">
+                        <i class="icon-user icon_font"></i>
+                        <input type="text" class="login_input" id="Email1" name="name" placeholder="input your userName" />
+                    </div>
+                    <div class="form-group mg-t20">
+                        <i class="icon-lock icon_font"></i>
+                        <input type="password" class="login_input" id="Password1" name="password" placeholder="input your password" />
+                    </div>
+                    <div class="checkbox mg-b25">
+                        <label>
+                            <input type="checkbox" />remeber me
+                        </label>
+                    </div>
+                    <button type="submit" class="login_btn">Login</button>
+                    
+                </form>
+            </div><!--row end-->
+        </div><!--container end-->
+    </form>
+
+    <form action="/">
+        @Html.ActionLink("Email", "Send_Email", "Home")
+    </form>
+</body>

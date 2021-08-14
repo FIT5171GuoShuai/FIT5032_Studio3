@@ -1,0 +1,48 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+  <EntityContainerMapping StorageEntityContainer="UserStoreContainer" CdmEntityContainer="UserContainer">
+    <EntitySetMapping Name="UserSet">
+      <EntityTypeMapping TypeName="IsTypeOf(User.User)">
+        <MappingFragment StoreEntitySet="UserSet">
+          <ScalarProperty Name="Id" ColumnName="Id" />
+          <ScalarProperty Name="Email" ColumnName="Email" />
+          <ScalarProperty Name="name" ColumnName="name" />
+          <ScalarProperty Name="password" ColumnName="password" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="AdminSet">
+      <EntityTypeMapping TypeName="IsTypeOf(User.Admin)">
+        <MappingFragment StoreEntitySet="AdminSet">
+          <ScalarProperty Name="Id" ColumnName="Id" />
+          <ScalarProperty Name="password" ColumnName="password" />
+          <ScalarProperty Name="aname" ColumnName="aname" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="OrderSet">
+      <EntityTypeMapping TypeName="IsTypeOf(User.Order)">
+        <MappingFragment StoreEntitySet="OrderSet">
+          <ScalarProperty Name="Id" ColumnName="Id" />
+          <ScalarProperty Name="user_id" ColumnName="user_id" />
+          <ScalarProperty Name="heritage_id" ColumnName="heritage_id" />
+          <ScalarProperty Name="create_time" ColumnName="create_time" />
+          <ScalarProperty Name="detail" ColumnName="detail" />
+          <ScalarProperty Name="UserId" ColumnName="UserId" />
+          <ScalarProperty Name="HeritageId" ColumnName="HeritageId" />
+          <ScalarProperty Name="AdminId" ColumnName="AdminId" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="HeritageSet">
+      <EntityTypeMapping TypeName="IsTypeOf(User.Heritage)">
+        <MappingFragment StoreEntitySet="HeritageSet">
+          <ScalarProperty Name="Id" ColumnName="Id" />
+          <ScalarProperty Name="hname" ColumnName="hname" />
+          <ScalarProperty Name="address" ColumnName="address" />
+          <ScalarProperty Name="pic" ColumnName="pic" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+  </EntityContainerMapping>
+</Mapping>
